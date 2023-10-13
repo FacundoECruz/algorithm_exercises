@@ -67,7 +67,6 @@ public class Exercise7 {
             }
             start = start.next;
         }
-
         return dummyNode.next;
     }
 }
