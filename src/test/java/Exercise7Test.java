@@ -6,13 +6,20 @@ public class Exercise7Test {
 
     ListNode a = new ListNode(3, new ListNode(6, new ListNode(9, null)));
     ListNode b = new ListNode(2, new ListNode(5, new ListNode(6, null)));
-
     Exercise7 exercise = new Exercise7();
 
     @Test
     public void node_of_a_should_point_to_node_of_b(){
         ListNode expected = new ListNode(3, new ListNode(2, new ListNode(5, new ListNode(6, new ListNode(6, new ListNode(9, null))))));
         ListNode result = exercise.pointToTheOtherList(a, b);
+        print(expected, result);
+        Assertions.assertTrue(areEqualLists(expected, result));
+    }
+
+    @Test
+    public void should_return_list_merged_and_sorted(){
+        ListNode expected = new ListNode(2, new ListNode(3, new ListNode(5, new ListNode(6, new ListNode(6, new ListNode(9, null))))));
+        ListNode result = exercise.mergeLinkedList(a, b);
         print(expected, result);
         Assertions.assertTrue(areEqualLists(expected, result));
     }

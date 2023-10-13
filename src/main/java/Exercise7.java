@@ -29,32 +29,45 @@ public class Exercise7 {
         return temp.next;
     }
 
-    public ListNode pointToTheOtherList(ListNode a, ListNode b){
+    public ListNode pointToTheOtherList(ListNode a, ListNode b) {
         ListNode temp = a.next;
         a.next = b;
         ListNode lastNode = getLastNode(b);
         lastNode.next = temp;
         return a;
     }
+
     private ListNode getLastNode(ListNode b) {
         ListNode temp = b;
-        while(temp.next != null){
+        while (temp.next != null) {
             temp = temp.next;
         }
         return temp;
     }
 
-    public ListNode mergeLinkedList(ListNode a, ListNode b){
-        ListNode start = new ListNode(0, null);
+    public ListNode mergeLinkedList(ListNode a, ListNode b) {
+        ListNode dummyNode = new ListNode(0);
+        ListNode start = dummyNode;
+        while (true) {
+            if(a == null){
+                start.next = b;
+                break;
+            }
+            if(b == null){
+                start.next = a;
+                break;
+            }
 
-        if(a != null && b != null && a.val < b.val){
-            start.next = a;
-            a = a.next;
-        } else if (a != null && b != null && a.val > b.val){
-            start.next = b;
-            b = b.next;
+            if (a.val <= b.val) {
+                start.next = a;
+                a = a.next;
+            } else {
+                start.next = b;
+                b = b.next;
+            }
+            start = start.next;
         }
 
-        return null;
+        return dummyNode.next;
     }
 }
